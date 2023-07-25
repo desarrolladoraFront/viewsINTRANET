@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>BARISTAuserBarista</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+</style>
+
+<body>
+    <div id="root">
+<!-- Empieza contenedor principal: Menú de navegación para userBarista -->
+        <style>
+            #buton-materialesDeVenta {
+                background-color: #38a3a5;
+                border-width: 5px;
+                border-style: solid;
+                color: #1b1b1e;
+                font-weight: 800;
+                font-size: 6rem;
+                height: 300px;
+                width: 100%;
+            }
+
+            #aprendizaje {
+                background-color: #edf6f9;
+                border-width: 5px;
+                border-style: solid;
+                margin-top: 1%;
+                color: #1b1b1e;
+                font-weight: 800;
+                font-size: 5rem;
+                height: 420px;
+                width: 59%;
+            }
+
+            #recetas {
+                background-color: #ffddd2;
+                border-width: 5px;
+                border-style: solid;
+                margin-top: 1%;
+                margin-left: 1%;
+                color: #1b1b1e;
+                font-weight: 800;
+                font-size: 4rem;
+                height: 220px;
+                width: 40%;
+            }
+
+            .title {
+                font-size: 80px;
+            }
+
+            /* versión responsive Tablet */
+            @media (max-width: 1266px) {
+                #buton-materialesDeVenta {
+                    font-size: 4rem;
+                    color: #1b1b1e;
+                    border-color: #1b1b1e;
+                }
+
+                #aprendizaje {
+                    font-size: 3rem;
+                    border-color: #1b1b1e;
+                }
+
+                #recetas {
+                    font-size: 34px;
+                    color: #1b1b1e;
+                    border-color: #1b1b1e;
+                }
+            }
+
+            /* versión responsive celular */
+            @media (max-width: 570px) {
+                #buton-materialesDeVenta {
+                    font-size: 40px;
+                    height: 150px;
+                    width: 80%;
+                }
+
+                #aprendizaje {
+                    font-size: 35px;
+                    height: 300px;
+                    width: 30%;
+                    writing-mode: vertical-rl;
+                    /* Vertical orientation */
+                    text-orientation: sideways-right;
+                }
+
+                #recetas {
+                    font-size: 30px;
+                    height: 220px;
+                    width: 50%;
+                }
+            }
+
+            /*versión falaxy fold */
+            @media (max-width: 347px) {
+                .title {
+                    font-size: 50px;
+                }
+
+                #buton-materialesDeVenta {
+                    font-size: 30px;
+                }
+
+                #recetas {
+                    font-size: 20px;
+                }
+            }
+        </style>
+        <div class="container" id="contenedor-botones-menu-principal">
+            <header class="mt-4">
+                <div class="my-2">
+                    <h1 class="title">Hola usuario</h1>
+                </div>
+                <p>Haz click en el tipo de material que necesitas.</p>
+            </header>
+            <div class="d-flex row">
+                <button id="buton-materialesDeVenta" onclick="abrirMaterialDeVentas()">Materiales de venta</button>
+            </div>
+            <div class="d-flex row">
+                <button id="aprendizaje" onclick="abrirMaterialDeAprendizaje()">Aprendizaje</button>
+                <button id="recetas" onclick="abrirRecetas()">Recetarios</button>
+            </div>
+        </div>
+        <script>
+            //Función para boton de material de aprendizaje
+            const abrirMaterialDeAprendizaje = () => {
+                const buttonMateriales = document.getElementById('contenedor-botones-menu-principal');
+                const contenedorMateriales = document.getElementById('container-material-de-aprendizaje');
+
+                buttonMateriales.classList.add('d-none');
+                contenedorMateriales.classList.remove('d-none');
+            }
+            //Función para boton de material de ventas
+            const abrirMaterialDeVentas = () => {
+                const buttonMateriales = document.getElementById('contenedor-botones-menu-principal');
+                const contenedorMateriales = document.getElementById('contenedor-material-de-venta');
+
+                buttonMateriales.classList.add('d-none');
+                contenedorMateriales.classList.remove('d-none');
+            }
+
+            //Función para boton de recetas
+            const abrirRecetas = () => {
+                const buttonMateriales = document.getElementById('contenedor-botones-menu-principal');
+                const contenedorMateriales = document.getElementById('contenedor-material-de-recetas');
+
+                buttonMateriales.classList.add('d-none');
+                contenedorMateriales.classList.remove('d-none');
+            }
+        </script>
+<!-- termina código del componente "Menú de navegación para userBarista" incluye css y javascript -->
+
+<!-- Empieza contenido de la vista: "Materiales de venta" para userBarista -->
+<style>
+    #contenedor-menu-material-de-venta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #contenedor-material-de-nuestraMarca {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 300px;
+        height: 200px;
+        margin: 10px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #menu-productos-chillOut {
+        flex-basis: 33.33%;
+        /* Ocupa un tercio de la pantalla */
+        background-color: lightgray;
+        padding: 10px;
+    }
+
+    main {
+        flex-basis: 66.66%;
+        /* Ocupa dos tercios de la pantalla */
+        background-color: lightblue;
+        padding: 10px;
+    }
+</style>
+        <div id="contenedor-material-de-venta" class="d-none container">
+            <h2 id="titulo-material-de-apoyo">Haz click para encontrar tu material de apoyo</h2>
+            <div id="contenedor-menu-material-de-venta">
+                <div class="container d-flex flex-wrap justify-content-center">
+                    <button class="my-4 mx-2">Fichas técnicas</button>
+                    <button onclick="contenidoNuestrasMarcas()" class="my-4 mx-2">Nuestras marcas</button>
+                    <button class="my-4 mx-2">Marcas asociadas</button>
+                </div>
+            </div>
+            <div id="contenedor-material-de-nuestraMarca"
+                class=" d-none container d-flex flex-wrap justify-content-center">
+                <button id="button-abrir-baristaChamp" class="my-4 mx-2">Barista Champ</button>
+                <button id="button-abrir-chillout" class="my-4 mx-2">ChillOut</button>
+                <button id="button-abrir-tisanas" class="my-4 mx-2">Tisanas</button>
+                <button id="button-abrir-laFenice" class="my-4 mx-2">La fenice</button>
+            </div>
+            <div id="contenedor-principal-contenido-nuestraMarca" class="container">
+                <div class="d-none" id="contenedor-baristaChamp">
+                    <div class="d-flex flex-column align-items-center">
+                        <h2>Café de especialidad</h2>
+                        <h3>Café barista champ</h3>
+                    </div>
+    
+                    <div>
+                        <h4>¿Qué es Barista Champ</h4>
+                        <div>
+                            <p>Es un café que ha estado a la altura de los estándares de calidad en cada parte del proceso y
+                                que ha mantenido su calidad desde que es recogido de la planta, por el productor, hasta la
+                                preparación final. De acuerdo con la SCA (Specialty Coffee Association), lo define en su
+                                estado verde, como café libre de defectos primarios, sin quakers, con el mínimo de 5
+                                defectos totales y con una puntuación por encima de los 80 puntos de acuerdo con los
+                                protocolos de catación para ser considerado como especial.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>¿De dónde viene?</h4>
+                        <div>What is Lorem Ipsum?
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                            but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                            popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                            and more recently with desktop publishing software like Aldus PageMaker including versions of
+                            Lorem Ipsum.</div>
+                    </div> <br>
+                    <div>
+                        <h4>Galería de fotos del producto</h4>
+                        <div class="carousel-container">
+                            <div class="card" style="background-image: url('image1.jpg');"></div>
+                            <div class="card" style="background-image: url('image2.jpg');"></div>
+                            <div class="card" style="background-image: url('image3.jpg');"></div>
+                            <div class="card" style="background-image: url('image4.jpg');"></div>
+                            <div class="card" style="background-image: url('image5.jpg');"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Videos acerca del producto</h4>
+                        <div class="carousel-container">
+                            <div class="card" style="background-image: url('image1.jpg');"></div>
+                            <div class="card" style="background-image: url('image2.jpg');"></div>
+                            <div class="card" style="background-image: url('image3.jpg');"></div>
+                            <div class="card" style="background-image: url('image4.jpg');"></div>
+                            <div class="card" style="background-image: url('image5.jpg');"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Branding</h3>
+                        <div class="d-flex flex-wrap justify-content-around">
+                            <div>Identidad</div>
+                            <div>Valores</div>
+                            <div>Diseño</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-none" id="contenedor-chillOut">
+                    <div class="container d-flex flex-wrap">
+                        <aside id="menu-productos-chillOut" class="d-flex flex-column align-items-start">
+                            <button class="my-4 mx-2">Mix</button>
+                            <button class="my-4 mx-2">Active</button>
+                            <button class="my-4 mx-2">Just Fruit</button>
+                            <button class="my-4 mx-2">Jelly</button>
+                            <button class="my-4 mx-2">Pearls</button>
+                            <button class="my-4 mx-2">Jam</button>
+                            <button class="my-4 mx-2">Fruit</button>
+                            <button class="my-4 mx-2">Jarabes</button>
+                            <button class="my-4 mx-2">Popotes</button>
+                        </aside>
+                        <main>
+                            <h3>Generalidades ChillOut</h3>
+                        </main>
+                    </div>
+                </div>
+                <div class="d-none" id="contenedor-laFenice"><p>Hola</p></div>
+                <div class="d-none" id="contenedor-tizanas"><p>Hola</p></div>
+            </div>
+            </div>
+            <script>
+                //Función para mover los botones hacía arriba
+                const movimientoDelMenu = () => {
+                    const menuMaterialVentas = document.getElementById('contenedor-menu-material-de-venta');
+                    const tituloMaterialDeApoyo = document.getElementById('titulo-material-de-apoyo');
+
+                    menuMaterialVentas.classList.add('d-none');
+                    tituloMaterialDeApoyo.classList.add('d-none');
+                }
+                //Función para abrir el contenido del boton "Nuestras marcas"
+                const contenidoNuestrasMarcas = () => {
+                    movimientoDelMenu()
+                    const buttonNuestrasMarcas = document.getElementById('contenedor-material-de-nuestraMarca');
+
+                    buttonNuestrasMarcas.classList.remove('d-none');
+                }
+                // **Colocar contenido dependiendo del botón: Barista Champ, ChillOut, Tisanas, La Fenice ** //
+                // Obtener los elementos de los botones por su id
+                const botonBaristaChamp = document.getElementById('button-abrir-baristaChamp');
+                const botonChillOut = document.getElementById('button-abrir-chillout');
+                const botonTisanas = document.getElementById('button-abrir-tisanas');
+                const botonLaFenice = document.getElementById('button-abrir-laFenice');
+
+                // Obtener los contenedores por su id
+                const contenedorBaristaChamp = document.getElementById('contenedor-baristaChamp');
+                const contenedorChillOut = document.getElementById('contenedor-chillOut');
+                const contenedorTisanas = document.getElementById('contenedor-tizanas');
+                const contenedorLaFenice = document.getElementById('contenedor-laFenice');
+
+                // Agregar un manejador de eventos para cada botón
+                botonBaristaChamp.addEventListener('click', () => {
+                    mostrarContenedor(contenedorBaristaChamp);
+                    ocultarContenedor(contenedorChillOut);
+                    ocultarContenedor(contenedorTisanas);
+                    ocultarContenedor(contenedorLaFenice);
+                });
+
+                botonChillOut.addEventListener('click', () => {
+                    mostrarContenedor(contenedorChillOut);
+                    ocultarContenedor(contenedorBaristaChamp);
+                    ocultarContenedor(contenedorTisanas);
+                    ocultarContenedor(contenedorLaFenice);
+                });
+
+                botonTisanas.addEventListener('click', () => {
+                    mostrarContenedor(contenedorTisanas);
+                    ocultarContenedor(contenedorBaristaChamp);
+                    ocultarContenedor(contenedorChillOut);
+                    ocultarContenedor(contenedorLaFenice);
+                });
+
+                botonLaFenice.addEventListener('click', () => {
+                    mostrarContenedor(contenedorLaFenice);
+                    ocultarContenedor(contenedorBaristaChamp);
+                    ocultarContenedor(contenedorChillOut);
+                    ocultarContenedor(contenedorTisanas);
+                });
+
+                // Función para mostrar un contenedor
+                function mostrarContenedor(contenedor) {
+                    contenedor.classList.remove('d-none');
+                }
+
+                // Función para ocultar un contenedor
+                function ocultarContenedor(contenedor) {
+                    contenedor.classList.add('d-none');
+                }
+
+            </script>
+<!-- Termina contenido de "Material para venta" -->
+
+<!-- Empieza contenido del botón "Material de aprendizaje" -->
+<style>
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+    }
+
+    .img-carrusel {
+        width: 250px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        cursor: pointer;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+        <div id="container-material-de-aprendizaje" class="d-none container container">
+            <h2>Da click en el curso del que deseas obtener información</h2>
+            <div class="d-flex flex-wrap justify-content-center">
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Arte Latte</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Mixología y moctelería</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Tostado</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Formación para un barista</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Brew Bar</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Bubble tea & iced coffee</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Catación</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Cold brew</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Experiencia sensorial</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Formación de emprendedores</button>
+                <button onclick="abrirMaterialCurso()" class="cursos my-4 mx-2">Defectos del café verde</button>
+            </div>
+        </div>
+        
+        <div id="container-material-de-curso" class="d-none container">
+            <h1>Nombre del taller</h1>
+            <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()">
+            <table id="myTable" class="table table-hover">
+                <tr>
+                    <th onclick="sortTable(0)">Nombre</th>
+                    <th onclick="sortTable(1)">Formato</th>
+                    <th>Compartir</th>
+                    <th>Etiqueta</th>
+                </tr>
+                <tr>
+                    <td>Infografía de café</td>
+                    <td>PDF</td>
+                    <td>Print,Facebook, correo</td>
+                    <td>
+                        <div id="etiquetas">Verano</div>
+                        <div id="etiquetas">caramelo</div>
+                        <div id="etiquetas">chispas</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Aprende a usar un maneral</td>
+                    <td>MP4</td>
+                    <td>Print,Facebook, correo</td>
+                    <td>
+                        <div id="etiquetas">Verano</div>
+                        <div id="etiquetas">caramelo</div>
+                        <div id="etiquetas">chispas</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Guía de molido</td>
+                    <td>PNG</td>
+                    <td>Print,Facebook, correo</td>
+                    <td>
+                        <div id="etiquetas">Verano</div>
+                        <div id="etiquetas">caramelo</div>
+                        <div id="etiquetas">chispas</div>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+        
+            <div class="contenedor-recursos-de-talleres mt-4">
+                <h3>Galería de videos de uso correcto de los materiales</h3>
+                <div class="carousel-container">
+                    <iframe class="card" width="560" height="315" src="https://www.youtube.com/embed/yqWSHTjvOFk"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                    <iframe class="card" width="560" height="315" src="https://www.youtube.com/embed/KKrQ5nu5BVg"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                    <iframe class="card" width="560" height="315" src="https://www.youtube.com/embed/iuj7temoDH4"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                    <iframe class="card" width="560" height="315" src="https://www.youtube.com/embed/NwTGMPJG-Rs"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <a href="">Descarga el programa del taller</a>
+                <a href="">Descarga el diccionario de apoyo para el taller</a>
+                <a href="">Descarga la presentación para el taller</a>
+        
+            </div>
+        </div>
+        <script>
+            //Función para el boton: material de curso
+            const abrirMaterialCurso = () => {
+                const buttonCursos = document.getElementById('container-material-de-aprendizaje');
+                const contenedorMaterialDeCursos = document.getElementById('container-material-de-curso');
+
+                buttonCursos.classList.add('d-none');
+                contenedorMaterialDeCursos.classList.remove('d-none');
+            }
+            //Herramienta para ordenar recetas por nombre o por autor
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        switchcount++;
+                    } else {
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
+            //Función para buscar receta en tabla:
+            function searchTable() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("searchInput");
+                filter = input.value.toLowerCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0]; // Change the index to match the desired column for searching
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }    
+        </script>
+<!-- Termina contenido de "Material de aprendizaje" -->
+
+<!-- Empieza contenido del botón Material de recetas -->
+<style>
+    /* no tengo claro cual es el style hasta ahora pero de mientras se mira bien, a ver que ocurre con la migración. */
+</style>
+        <div id="contenedor-material-de-recetas" class="d-none container">
+            <h1><b>Recetarios</b></h1>
+            <div class="container-publicaciones">
+                <h5>Estas son nuestras publicaciones de recetarios más actuales</h5>
+                <div class="d-flex justify-content-center my-5">
+                    <ul>
+                        <li>
+                            <a href="https://qr.cafeetrusca.com/web/viewer.html?file=REVISTA_MAR-ABR_WEB.pdf"
+                                target="_blank" rel="noopener noreferrer" download>
+                                <img class="img-carrusel"
+                                    src="https://cafeetrusca.com/img/Revista-Etrusca-Marzo-Abril-2023.webp" alt="PDF 1">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://qr.cafeetrusca.com/web/viewer.html?file=REVISTA_MAY-JUN.pdf"
+                                target="_blank" rel="noopener noreferrer" download>
+                                <img class="img-carrusel"
+                                    src="https://cafeetrusca.com/img/Revista-Etrusca-Mayo-Junio-2023.webp" alt="PDF 2">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://qr.cafeetrusca.com/web/viewer.html?file=REVISTA_ENE-FEB-2023.pdf"
+                                target="_blank" rel="noopener noreferrer" download>
+                                <img class="img-carrusel"
+                                    src="https://cafeetrusca.com/wp-content/uploads/2023/01/Imagen_portada_revista_EneFeb23.jpg.webp"
+                                    alt="PDF 3">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://revista.cafeetrusca.com/Julio-Agosto-2023.html" target="_blank"
+                                rel="noopener noreferrer" download>
+                                <img class="img-carrusel"
+                                    src="https://cafeetrusca.com/img/Revista-Etrusca-Julio-Agosto-2023.webp"
+                                    alt="Catalog 1">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container-tabla-de-recetas my-3">
+                <div class="container d-flex flex-wrap justify-content-between my-2">
+                    <h5>Nuestras recetas: </h5>
+                    <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchTable()">
+                </div>
+                <table id="myTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Nombre</th>
+                            <th onclick="sortTable(1)">Creada por</th>
+                            <th>Etiquetas</th>
+                            <th>Compartir</th>
+                            <th>Imprimir</th>
+                            <th>Publicar</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Noche dorada</td>
+                        <td>Wojciech Tysler</td>
+                        <td>Lattes, Verano</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Etrusco</td>
+                        <td>Harper Lee</td>
+                        <td>Mixología sin alcohol, Invierno</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Cold tea</td>
+                        <td>George Orwell</td>
+                        <td>Veganas, Saludables</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Cold tea</td>
+                        <td>George Orwell</td>
+                        <td>Veganas, Saludables</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Cold tea</td>
+                        <td>George Orwell</td>
+                        <td>Veganas, Saludables</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Cold tea</td>
+                        <td>George Orwell</td>
+                        <td>Veganas, Saludables</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Cold tea</td>
+                        <td>George Orwell</td>
+                        <td>Veganas, Saludables</td>
+                        <td>Share</td>
+                        <td>Print</td>
+                        <td><input type="checkbox" name="online" value="1"></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </table>
+            </div>
+
+            <div class="container" style="width: 60%;">
+                <form class="form" name="form">
+                    <label for="form" class="my-4">Registra una receta nueva en la base de datos</label>
+                    <div class="form-group d-flex flex-column justify-content-center align-self-center p-2"
+                        name="datosGenerales" style="width: 60%;">
+                        <label for="datosGenerales">Datos generales</label>
+                        <input class="mt-2" type="text" id="nombreReceta" name="nombreReceta"
+                            placeholder="Nombre de la receta" required>
+                        <input class="mt-2" type="text" id="prompt" name="prompt" placeholder="Presentación corta"
+                            required>
+                        <input class="mt-2" type="text" id="autor" name="autor" placeholder="Autor" required>
+                        <input class="mt-2" type="number" id="time" name="tiempoPreparacion"
+                            placeholder="Tiempo estimado (min)" required>
+                    </div>
+
+                    <div class=" form-group d-flex flex-column justify-content-center align-self-center p-2"
+                        id="ingredientesContainer" style="width: 60%;">
+                        <label for="ingredientes">Ingredientes</label>
+                        <div id="ingredientesList">
+                            <div class="ingredientesItem">
+                                <div class=" d-flex flex-column justify-content-center align-self-center select">
+                                    <select class="ingredientesSelect" name="ingredientesEtrusca" required>
+                                        <option value="chillout mix">Chillout Mix</option>
+                                        <option value="chillout jarabe">Chillout Jarabe</option>
+                                        <option value="torani menta">Torani Menta</option>
+                                        <option value="torani mango">Torani Mango</option>
+                                        <option value="cafe especialidad">Café Especialidad</option>
+                                        <option value="capuchine">Capuchine</option>
+                                        <option value="torani caramelo">Torani Caramelo</option>
+                                    </select>
+                                </div>
+
+                                <a class="mt-2" href="#" id="agregarIngredienteLink">Agregar ingrediente familia
+                                    etrusca</a>
+
+                                <input class="mt-2" type="text" class="ingredientesInput" name="ingredientesNoEtrusca"
+                                    placeholder="Ingrediente 1" required>
+
+                                <select class="unidadesMedidaSelect">
+                                    <option value="cuchara">Cuchara</option>
+                                    <option value="cucharita">Cucharita</option>
+                                    <option value="vaso">Vaso</option>
+                                    <option value="taza">Taza</option>
+                                    <option value="pizca">Pizca</option>
+                                    <option value="chorro">Chorro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <a class="mt-2" href="#" id="agregarIngredienteLink">Agregar ingrediente</a>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-center align-self-center" name="AccesoriosEtrusca"
+                        style="width: 60%;">
+                        <label for="AccesoriosEtrusca">Accesorios Etrusca</label>
+                        <select class="unidadesMedidaSelect">
+                            <option value="cucharaC">Cuchara</option>
+                            <option value="licuadora">Licuadora</option>
+                            <option value="molino">Molino</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-center align-self-center mt-2"
+                        name="metodoDePreparacion" style="width: 60%;">
+                        <label for="metodoDePreparacion">Preparación</label>
+                        <textarea id="modoPreparacion" name="modoPreparacion" required
+                            placeholder="Escribe una tu paso a paso para crear la receta."></textarea>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-self-center mt-2" name="ultimosDetalles"
+                        style="width: 60%;">
+                        <label for="ultimosDetalles">Últimos detalles:</label>
+                        <input class="mt-2" type="text" id="etiqueta" name="etiquetas"
+                            placeholder="Añade etiquetas de búsqueda (al menos una)">
+                        <input class="mt-2" type="file" id="imagen" name="imagen">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center mt-4">
+                        <button type="submit" class="btn btn-primary">Enviar receta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
