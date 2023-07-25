@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Incluir jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+        integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+        integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
+    <title>vistaVendedores</title>
+</head>
+<style>
+body{
+    font-family: 'Poppins', sans-serif;
+}
+li:hover{
+    color: grey;
+}
+</style>
+
+<body>
+    <div class="container">
+        <div class="container my-4">
+            <h1>Bienvenido usuario vendedor</h1>
+            <h4>Recuerda que aquí puedes encontrar material relacionado con tus productos. Sólo usa la herramietna de filtrado y listo</h4>
+            <select id="select-tools" placeholder="Buscar por artículo, código de barras, nombre o clave de producto"></select>
+            <button type="button" class="btn btn-light my-2">Limpiar filtros</button>
+            <button type="button" class="btn btn-dark">Filtrar</button>
+        </div>
+    
+        <div class="contenedor-filtrado d-flex flex-wrap">
+            <div class="contenido-multimedia d-flex flex-column">
+                <h5 style="font-weight: 700;">Multimedia</h5>
+                <ul>
+                    <li>Video Receta | <a href="https://youtu.be/yqWSHTjvOFk">Mangonada</a></li>
+                    <li>Webinar | <a href="https://www.youtube.com/watch?v=nqLZYIgO9ek">Tu negocio es mejor con Torani Mango</a></li>
+                    <li>Entrevista | <a href="https://www.youtube.com/watch?v=nqLZYIgO9ek">Torani es la mejor inversión</a></li>
+                    <li>Video | <a href="https://www.youtube.com/watch?v=nqLZYIgO9ek">Publicidad de TORANIS</a></li>
+                </ul>
+            </div>
+            <div class="contenido-imagenes d-flex flex-column">
+                <h5 style="font-weight: 700;">Imagenes</h5>
+                <ul>
+                    <li>Licor en botella</li>
+                    <li>Torani Chocolate</li>
+                    <li>Torani Caramelo</li>
+                    <li>Torani Vainilla</li>
+                    <li>Torani Avellana</li>
+                    <li>Torani Frambuesa</li>
+                    <li>Torani Menta</li>
+                    <li>Torani Almendra</li>
+                    <li>Torani Canela</li>
+                    <li>Torani Coco</li>
+                    <li>Torani Naranja</li>
+                </ul>
+            </div>
+            <div class="contenido-recetas d-flex flex-column">
+                <h5 style="font-weight: 700;">Recetas</h5>
+                <ul>
+                    <li>Mangonada</li>
+                    <li>Mango pasión</li>
+                    <li>Bubble mango fresco</li>
+                    <li>Tizana con torani de mango</li>
+                </ul>
+            </div>
+            <div class="contenido-otros d-flex flex-column">
+                <h5 style="font-weight: 700;">Otros materiales</h5>
+                <ul>
+                    <li>PDF | La botella torani</li>
+                    <li>Infografía de sabores exóticos</li>
+                    <li>Cómo usar mi producto </li>
+                    <li>Tizana con torani de mango/li>
+                </ul>
+            </div>
+            <div class="contenido-relacionado" style="background-color: #bfc0c0; border-radius: 10px; padding: 10px; ">
+                <h5 style="font-weight: 700;">Contenido relacionado</h5>
+                <ul>
+                    <li>Como usar correctamente una frappera Vitamix</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $('#select-tools').selectize({
+        maxItems: null,
+        valueField: 'id',
+        labelField: 'title',
+        searchField: 'title',
+        options: [
+            { id: 1, title: 'Torani Mango', url: 'http://en.wikipedia.org/wiki/Spectrometers' },
+            { id: 2, title: 'Capuchine café', url: 'http://en.wikipedia.org/wiki/Star_chart' },
+            { id: 3, title: 'Café barista champ', url: 'http://en.wikipedia.org/wiki/Electrical_tape' }
+        ],
+        create: false
+    });
+</script>
+
+</html>
